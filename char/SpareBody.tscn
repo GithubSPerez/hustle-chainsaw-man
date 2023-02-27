@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://projectile/BaseProjectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://chainsaw/char/SpareBody.gd" type="Script" id=2]
+[ext_resource path="res://characters/BaseChar.gdshader" type="Shader" id=3]
+[ext_resource path="res://chainsaw/char/sprites/states/heartkick/heartkick9.png" type="Texture" id=4]
+[ext_resource path="res://chainsaw/char/sprites/states/heartkick/heartkick8.png" type="Texture" id=5]
+[ext_resource path="res://chainsaw/char/sprites/states/heartkick/heartkick7.png" type="Texture" id=6]
+[ext_resource path="res://chainsaw/char/states/Sparebody.gd" type="Script" id=7]
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/max_color_distance = 0.01
+shader_param/super_dim = false
+shader_param/use_outline = false
+shader_param/outline_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/max_color_distance = 0.01
+shader_param/super_dim = false
+shader_param/use_outline = false
+shader_param/outline_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "Default",
+"speed": 5.0
+} ]
+
+[node name="SpareBody" instance=ExtResource( 1 )]
+material = SubResource( 2 )
+use_parent_material = true
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+gravity = "0"
+
+[node name="Sprite" parent="Flip" index="0"]
+material = SubResource( 3 )
+frames = SubResource( 1 )
+animation = "Default"
+speed_scale = 3.0
+
+[node name="CollisionBox" parent="." index="2"]
+x = 7
+y = -104
+
+[node name="Hurtbox" parent="." index="3"]
+y = -83
+width = 1
+height = 1
+
+[node name="Default" parent="StateMachine" index="0"]
+script = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+apply_forces = true
+apply_fric = true
+apply_grav = true
+anim_length = 9
+ticks_per_frame = 3
+enter_force_dir_x = "-1"
+enter_force_speed = "3"
+sfx_volume = -5.0
+lifetime = 200

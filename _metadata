@@ -1,0 +1,12 @@
+{
+  "name": "chainsaw",
+  "friendly_name": "Chainsaw Man",
+  "description": "CSM as a yomi hustle character",
+  "author": "srPerez",
+  "version": "1.3",
+  "link": "",
+  "id": "913012",
+  "requires": ["char_loader"],
+  "overwrites": false,
+  "priority": 0
+}
